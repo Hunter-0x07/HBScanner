@@ -20,6 +20,7 @@
 
 </head>
 <body>
+@include('shared._message')
 
 @yield('content')
 
