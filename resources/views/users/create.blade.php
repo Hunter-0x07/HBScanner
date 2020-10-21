@@ -75,9 +75,7 @@
                         <div class="forgot"></div>
                     </div>
 
-
                 </form>
-
 
             </div>
         </div>

@@ -8,7 +8,7 @@
                         class="icon-caret-down small"></i>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="#"><i class="icon-user"></i>个人中心</a></li>
+                    <li><a href="{{ route('users.edit', $user->id) }}"><i class="icon-user"></i>个人中心</a></li>
                     <li>
                         <form action="{{ route('logout') }}" method="POST">
                             {{ csrf_field() }}
