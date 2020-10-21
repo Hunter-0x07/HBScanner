@@ -13,10 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// 主页路由
 Route::get('/', 'StaticPagesController@home')->name('home');
 
-// 用户注册登录路由，遵从RESTFUL架构
+// 用户注册及管理路由
+Route::get('signup', 'UsersController@create')->name('signup');
 Route::resource('users', 'UsersController');
+
+// 会话管理路由
+Route::get('login', 'SessionController@create')->name('login');
+Route::post('login', 'SessionController@store')->name('login');
+Route::delete('logout', 'SessionController@destroy')->name('logout');
 
 
 
