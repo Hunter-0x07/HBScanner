@@ -7,7 +7,8 @@
     <div class="widget">
         <div class="login-content">
             <div class="widget-content" style="padding-bottom:0;">
-                <form method="get" action="{{ route('users.store') }}" class="no-margin">
+                <form method="POST" action="{{ route('users.store') }}" class="no-margin">
+                    {{ csrf_field() }}
                     <h3 class="form-title">用户注册</h3>
 
                     <fieldset>
