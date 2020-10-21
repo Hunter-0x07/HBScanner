@@ -15,4 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'StaticPagesController@home')->name('home');
 
+// 用户注册登录路由
+Route::get('signup', 'UsersController@create')->name('signup');
+
+
 
