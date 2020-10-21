@@ -2,13 +2,14 @@
     <div class="top-navbar header b-b"><a data-original-title="Toggle navigation" class="toggle-side-nav pull-left"
                                           href="#"><i class="icon-reorder"></i> </a>
         <div class="brand pull-left"><a href="{{ route('home') }}"><h2>HBScanner</h2></a></div>
+        @if (\Illuminate\Support\Facades\Auth::check())
         <ul class="nav navbar-nav navbar-right  hidden-xs">
             <li class="dropdown user  hidden-xs"><a data-toggle="dropdown" class="dropdown-toggle" href="#"> <i
-                        class="icon-male"></i> <span class="username">{{ $user->name }}</span> <i
+                        class="icon-male"></i> <span class="username">{{ \Illuminate\Support\Facades\Auth::user()->name }}</span> <i
                         class="icon-caret-down small"></i>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="{{ route('users.edit', $user->id) }}"><i class="icon-user"></i>个人中心</a></li>
+                    <li><a href="{{ route('users.edit', \Illuminate\Support\Facades\Auth::user()->id) }}"><i class="icon-user"></i>个人中心</a></li>
                     <li>
                         <form action="{{ route('logout') }}" method="POST">
                             {{ csrf_field() }}
@@ -19,5 +20,6 @@
                 </ul>
             </li>
         </ul>
+        @endif
     </div>
 </div>

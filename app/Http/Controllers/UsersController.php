@@ -7,6 +7,14 @@ use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
+    public function __construct()
+    {
+        // 未登录用户权限限制
+        $this->middleware('auth', [
+            'except' => ['create', 'store']
+        ]);
+    }
+
     /**
      * 返回用户注册页面
      *
@@ -53,6 +61,9 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
+        // 登录用户权限限制
+        $this->authorize('update', $user);
+
         return view('users.edit', compact('user'));
     }
 
@@ -62,6 +73,9 @@ class UsersController extends Controller
      */
     public function update(User $user, Request $request)
     {
+        // 登录用户权限限制
+        $this->authorize('update', $user);
+
         // 验证表单数据
         $this->validate($request, [
             'name' => 'required|max:50',

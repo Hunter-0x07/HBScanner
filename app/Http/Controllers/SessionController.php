@@ -7,6 +7,14 @@ use Illuminate\Support\Facades\Auth;
 
 class SessionController extends Controller
 {
+    public function __construct()
+    {
+        // 未登录用户权限限制
+        $this->middleware('auth', [
+            'except' => ['create', 'store']
+        ]);
+    }
+
     public function create()
     {
         /**
