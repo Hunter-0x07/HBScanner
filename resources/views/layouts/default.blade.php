@@ -20,9 +20,18 @@
 
 </head>
 <body>
+<!-- session信息提示 -->
 @include('shared._message')
 
-@yield('content')
+@include('layouts._header')
+
+<div class="wrapper">
+    @include('layouts._left')
+
+    @yield('content')
+</div>
+
+@include('layouts._footer')
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="{{ URL::asset('js/jquery.js') }}"></script>

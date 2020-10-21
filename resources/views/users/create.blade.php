@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.necessary')
 @section('content')
     <div class="login-logo">
         <h3>HBScanner</h3>
@@ -23,7 +23,8 @@
                                 <span class="input-group-addon">
                                     <i class="icon-user"></i>
                                 </span>
-                                <input type="text" name="name" placeholder="你的名称" value="{{ old('name') }}" class="form-control input-lg">
+                                <input type="text" name="name" placeholder="你的名称" value="{{ old('name') }}"
+                                       class="form-control input-lg">
                             </div>
 
                         </div>
@@ -35,7 +36,8 @@
                                 <span class="input-group-addon">
                                     <i class="icon-user"></i>
                                 </span>
-                                <input type="email" name="email" placeholder="你的邮箱" value="{{ old('email') }}" class="form-control input-lg">
+                                <input type="email" name="email" placeholder="你的邮箱" value="{{ old('email') }}"
+                                       class="form-control input-lg">
                             </div>
 
                         </div>
@@ -47,7 +49,8 @@
                                 <span class="input-group-addon">
                                     <i class="icon-lock"></i>
                                 </span>
-                                <input type="password" name="password" placeholder="你的密码" value="{{ old('password') }}" class="form-control input-lg">
+                                <input type="password" name="password" placeholder="你的密码" value="{{ old('password') }}"
+                                       class="form-control input-lg">
                             </div>
 
                         </div>
@@ -59,7 +62,8 @@
                                 <span class="input-group-addon">
                                     <i class="icon-lock"></i>
                                 </span>
-                                <input type="password" name="password_confirmation" placeholder="再次确认一下密码" value="{{ old('password_confirmation') }}" class="form-control input-lg">
+                                <input type="password" name="password_confirmation" placeholder="再次确认一下密码"
+                                       value="{{ old('password_confirmation') }}" class="form-control input-lg">
                             </div>
 
                         </div>

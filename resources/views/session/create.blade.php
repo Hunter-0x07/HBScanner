@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.necessary')
 
 @section('content')
     <div class="login-logo">

@@ -73,7 +73,8 @@
                 <div class="widget-container">
                     <div class="padded"><a href="#" class="pull-right"><i class="icon-map-marker"></i></a> <span
                             class="h4">McLean, VA</span>
-                        <div class="text-center padder m-t"><span class="h1"><i class="icon-cloud text-muted"></i> 68A</span>
+                        <div class="text-center padder m-t"><span class="h1"><i
+                                    class="icon-cloud text-muted"></i> 68A</span>
                         </div>
                     </div>
                     <div class="widget-footer lt">
