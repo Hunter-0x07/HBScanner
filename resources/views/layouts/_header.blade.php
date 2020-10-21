@@ -1,7 +1,7 @@
 <div class="container">
     <div class="top-navbar header b-b"><a data-original-title="Toggle navigation" class="toggle-side-nav pull-left"
                                           href="#"><i class="icon-reorder"></i> </a>
-        <div class="brand pull-left"><a href="index.html"><h2>HBScanner</h2></a></div>
+        <div class="brand pull-left"><a href="{{ route('home') }}"><h2>HBScanner</h2></a></div>
         <ul class="nav navbar-nav navbar-right  hidden-xs">
             <li class="dropdown"><a data-toggle="dropdown" class="dropdown-toggle" href="#"> <i
                         class="icon-warning-sign"></i> <span class="badge">5</span> </a>
