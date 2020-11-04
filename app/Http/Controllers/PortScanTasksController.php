@@ -38,7 +38,7 @@ class PortScanTasksController extends Controller
 
         // 调用端口扫描器
 //        shell_exec("python3 /home/vagrant/code/scanner/port_scan/port_scan.py $task->id");
-        shell_exec("python3 /home/vagrant/code/scanner/run.py $task->id");
+        shell_exec("python3 /home/vagrant/code/scanner/port_scan_run.py $task->id");
 
         return redirect()->route('port_task.index');
     }

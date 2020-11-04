@@ -36,6 +36,7 @@ class SubdomainScanTasksController extends Controller
         ]);
 
         // 调用子域名扫描器
+        shell_exec("python3 /home/vagrant/code/scanner/subdomain_scan_run.py $task->id");
 
         // 跳转到任务列表页
         return redirect()->route('subdomain_task.index');

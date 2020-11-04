@@ -30,6 +30,8 @@
                                                         <a class="btn btn-s-md btn-warning btn-rounded" href="#">等待中</a>
                                                     @elseif($task->status == "running")
                                                         <a class="btn btn-s-md btn-info btn-rounded" href="#">正在运行</a>
+                                                    @elseif($task->status == "failed")
+                                                        <a class="btn btn-s-md btn-danger btn-rounded" href="#">失败请重试</a>
                                                     @else($task->status == "completed")
                                                         <a class="btn btn-s-md btn-success btn-rounded" href="#">已完成</a>
                                                     @endif
