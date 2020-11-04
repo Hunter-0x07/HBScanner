@@ -50,5 +50,16 @@ Route::get('port_task/delete/{task_id}', 'PortScanTasksController@delete')->name
 // 获取指定扫描任务的结果
 Route::get('port_task_result/{task_id}', 'PortScanResultsController@show')->name('port_task_result.show');
 
+/**
+ * 子域名枚举任务路由
+ *
+ */
+// 新建子域名枚举任务路由
+Route::get('subdomain_task/create', 'SubdomainScanTasksController@create')->name('subdomain_task.create');
+// 子域名表单处理提交的路由
+Route::post('subdomain_task', 'SubdomainScanTasksController@store')->name('subdomain_task.store');
+// 返回任务列表
+Route::get('subdomain_task', 'SubdomainScanTasksController@index')->name('subdomain_task.index');
+
 
 

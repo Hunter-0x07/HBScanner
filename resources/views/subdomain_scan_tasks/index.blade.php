@@ -6,7 +6,7 @@
                 <div class="col-lg-12">
                     <div class="widget">
                         <div class="widget-header"><i class="icon-table"></i>
-                            <h3>端口探测任务列表</h3>
+                            <h3>子域名枚举任务列表</h3>
                         </div>
                         <div class="widget-content">
                             <div class="body">
@@ -44,14 +44,17 @@
                                                             class="caret"></span></button>
                                                     <ul class="dropdown-menu">
                                                         <li><a href="#">导出报告</a></li>
-                                                        <li><a href="{{ route('port_task_result.show', $task->id) }}">任务结果</a></li>
-                                                        <li><a href="{{ route('port_task.delete', $task->id) }}">删除任务</a></li>
+                                                        <li><a href="#">任务结果</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">删除任务</a>
+                                                        </li>
                                                     </ul>
                                                 </div>
                                             </td>
                                         </tr>
-{{--                                        <input id="task_show_url" type="hidden"--}}
-{{--                                               value="{{ route("port_task.show", ["task_id" => $task->id]) }}">--}}
+                                        {{--                                        <input id="task_show_url" type="hidden"--}}
+                                        {{--                                               value="{{ route("port_task.show", ["task_id" => $task->id]) }}">--}}
                                     @endforeach
                                     </tbody>
                                 </table>
@@ -87,3 +90,4 @@
         </div>
     </div>
 @stop
+

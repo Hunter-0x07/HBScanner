@@ -22,7 +22,7 @@ class PortScanResultsController extends Controller
         return view('port_scan_results.show', [
             'task_results' => $task_results,
             'result_num' => $result_num,
-            'target_ip' => $target_ip
+            'target_ip' => $target_ip,
         ]);
     }
 }
