@@ -5,41 +5,45 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="widget">
-                        <div class="widget-header"><i class="icon-user"></i>
-                            <h3>个人资料</h3>
+                        <div class="widget-header"><i class="icon-anchor"></i>
+                            <h3>端口扫描任务</h3>
                         </div>
                         <div class="widget-content">
                             <div class="body">
-                                <form data-validate="parsley" method="post" novalidate
+                                <form action="{{ route('port_task.store') }}" data-validate="parsley"
+                                      method="post" novalidate
                                       class="form-horizontal label-left" id="user-form">
+                                    {{ csrf_field() }}
+
                                     <fieldset>
-                                        <legend class="section">基本资料</legend>
+                                        <legend class="section">任务新建</legend>
                                         <div class="control-group">
                                             <div class="col-md-3">
-                                                <label for="prefix" class="control-label">昵称</label>
+                                                <label for="prefix" class="control-label">任务名称</label>
                                             </div>
                                             <div class="col-md-9">
                                                 <div class="form-group">
-                                                    <input type="text" class="col-sm-6 col-xs-12" name="prefix"
-                                                          value="{{ $user }}" id="prefix">
+                                                    <input type="text" placeholder="输入任务名称" class="col-sm-6 col-xs-12"
+                                                           name="task_name"
+                                                           id="prefix">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="control-group">
                                             <div class="col-md-3">
-                                                <label for="first-name" class="control-label">邮箱<span
-                                                        class="required">*</span></label>
+                                                <label for="first-name" class="control-label">任务目标</label>
                                             </div>
                                             <div class="col-md-9">
                                                 <div class="form-group">
-                                                    <input type="text" class="col-xs-12 parsley-validated" required
-                                                           name="first-name" id="first-name">
+                                                    <input type="text" placeholder="如：vulnweb.com, 192.168.1.1"
+                                                           class="col-xs-12 parsley-validated"
+                                                           name="target" id="first-name">
                                                 </div>
                                             </div>
                                         </div>
                                     </fieldset>
                                     <div class="form-actions">
-                                        <button class="btn btn-primary" type="submit">更新资料</button>
+                                        <button class="btn btn-primary" type="submit">提交任务</button>
                                     </div>
                                 </form>
                             </div>
