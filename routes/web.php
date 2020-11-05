@@ -60,6 +60,8 @@ Route::get('subdomain_task/create', 'SubdomainScanTasksController@create')->name
 Route::post('subdomain_task', 'SubdomainScanTasksController@store')->name('subdomain_task.store');
 // 返回任务列表
 Route::get('subdomain_task', 'SubdomainScanTasksController@index')->name('subdomain_task.index');
+// 删除指定任务
+Route::get('subdomain_task/delete/{task_id}', 'SubdomainScanTasksController@delete')->name('subdomain_task.delete');
 
 
 

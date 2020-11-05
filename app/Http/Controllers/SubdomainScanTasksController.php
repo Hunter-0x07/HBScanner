@@ -52,4 +52,20 @@ class SubdomainScanTasksController extends Controller
 
         return view('subdomain_scan_tasks.index', compact('tasks'));
     }
+
+    /**
+     * 从任务列表中删除指定任务
+     *
+     */
+    public function delete(Request $request, $task_id)
+    {
+        // 从数据库中获取指定task_id的任务数据
+        $task = SubdomainScanTask::find($task_id);
+
+        // 删除任务数据
+        $task->delete();
+
+        // 刷新页面
+        return back();
+    }
 }

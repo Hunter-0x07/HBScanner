@@ -49,7 +49,7 @@
                                                         <li><a href="#">任务结果</a>
                                                         </li>
                                                         <li>
-                                                            <a href="#">删除任务</a>
+                                                            <a href="{{ route('subdomain_task.delete', $task->id) }}">删除任务</a>
                                                         </li>
                                                     </ul>
                                                 </div>
