@@ -63,5 +63,12 @@ Route::get('subdomain_task', 'SubdomainScanTasksController@index')->name('subdom
 // 删除指定任务
 Route::get('subdomain_task/delete/{task_id}', 'SubdomainScanTasksController@delete')->name('subdomain_task.delete');
 
+/**
+ * 子域名枚举结果路由
+ *
+ */
+// 获取指定任务结果路由
+Route::get('subdomain_result/{task_id}', 'SubdomainScanResultsController@show')->name('subdomain_result.show');
+
 
 

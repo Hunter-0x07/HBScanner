@@ -46,7 +46,7 @@
                                                             class="caret"></span></button>
                                                     <ul class="dropdown-menu">
                                                         <li><a href="#">导出报告</a></li>
-                                                        <li><a href="#">任务结果</a>
+                                                        <li><a href="{{ route('subdomain_result.show', $task->id) }}">任务结果</a>
                                                         </li>
                                                         <li>
                                                             <a href="{{ route('subdomain_task.delete', $task->id) }}">删除任务</a>
