@@ -70,5 +70,24 @@ Route::get('subdomain_task/delete/{task_id}', 'SubdomainScanTasksController@dele
 // 获取指定任务结果路由
 Route::get('subdomain_result/{task_id}', 'SubdomainScanResultsController@show')->name('subdomain_result.show');
 
+/**
+ * 指纹识别任务路由
+ *
+ */
+// 新建指纹识别任务路由
+Route::get('finger_scan_task/create', 'FingerScanTasksController@create')->name('finger_scan_task.create');
+// 指纹识别表单处理提交的路由
+Route::post('finger_scan_task', 'FingerScanTasksController@store')->name('finger_scan_task.store');
+// 返回任务列表
+Route::get('finger_scan_task', 'FingerScanTasksController@index')->name('finger_scan_task.index');
+// 删除指定任务
+Route::get('finger_scan_task/delete/{task_id}', 'FingerScanTasksController@delete')->name('finger_scan_task.delete');
+
+/**
+ * 指纹识别结果路由
+ *
+ */
+// 新建指纹识别任务路由
+Route::get('finger_scan_result/{task_id}', 'FingerScanResultsController@show')->name('finger_scan_result.show');
 
 
