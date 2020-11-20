@@ -33,4 +33,4 @@
 
 ### Demonstration
 
-![Demo](https://github.com/Hunter-0x07/HBScanner/blob/master/HBScanner.gif?raw=true)
+![Demo](https://dq5e1b-blog.oss-cn-beijing.aliyuncs.com/HBScanner.gif)
