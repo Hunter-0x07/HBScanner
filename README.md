@@ -33,4 +33,4 @@
 
 ### Demonstration
 
-![Demo](https://dq5e1b-blog.oss-cn-beijing.aliyuncs.com/HBScanner.gif)
+![image](https://dq5e1b-blog.oss-cn-beijing.aliyuncs.com/HBScanner.gif)
