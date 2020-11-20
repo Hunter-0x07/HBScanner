@@ -90,4 +90,19 @@ Route::get('finger_scan_task/delete/{task_id}', 'FingerScanTasksController@delet
 // 新建指纹识别任务路由
 Route::get('finger_scan_result/{task_id}', 'FingerScanResultsController@show')->name('finger_scan_result.show');
 
-
+/**
+ * poc检测任务路由
+ *
+ */
+// 新建POC检测任务路由
+Route::get('poc_scan_task/create', 'PocScanTasksController@create')->name('poc_scan_task.create');
+// POC检测任务处理表单提交的路由
+Route::post('poc_scan_task', 'PocScanTasksController@store')->name('poc_scan_task.store');
+// 返回任务列表
+Route::get('poc_scan_task', 'PocScanTasksController@index')->name('poc_scan_task.index');
+// 删除指定任务
+Route::get('poc_scan_task/delete/{task_id}', 'PocScanTasksController@delete')->name('poc_scan_task.delete');
+// 返回漏洞列表
+Route::get('poc_scan_task/vul', 'PocScanTasksController@vul')->name('poc_scan_task.vul');
+// 查看指定漏洞详情
+Route::get('poc_scan_task/vul_detail/{poc_id}', 'PocScanTasksController@vul_detail')->name('poc_scan_task.vul_detail');

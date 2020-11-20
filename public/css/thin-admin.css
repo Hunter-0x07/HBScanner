@@ -1233,6 +1233,10 @@ h3.tl-title {
 .to-do-list li p {
     margin-bottom: 0;
 }
+.to-do-list {
+    height: 250px;
+    overflow: auto;
+}
 .todo-actionlist {
     position: absolute;
     right: 15px;

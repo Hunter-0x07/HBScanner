@@ -25,9 +25,9 @@
             <li><a href="#"> <i class="icon-eye-open"></i> 基于POC的漏洞检测 <i
                         class="arrow icon-angle-left"></i></a>
                 <ul class="sub-menu">
-                    <li><a href="#"> <i class="icon-angle-right"></i> 新建任务 </a></li>
-                    <li><a href="#"> <i class="icon-angle-right"></i> 任务列表 </a></li>
-                    <li><a href="#"> <i class="icon-angle-right"></i> POC管理 </a></li>
+                    <li><a href="{{ route('poc_scan_task.create') }}"> <i class="icon-angle-right"></i> 新建任务 </a></li>
+                    <li><a href="{{ route('poc_scan_task.index') }}"> <i class="icon-angle-right"></i> 任务列表 </a></li>
+                    <li><a href="{{ route('poc_scan_task.vul') }}"> <i class="icon-angle-right"></i> 漏洞管理 </a></li>
                 </ul>
             </li>
         </ul>
