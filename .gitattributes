@@ -2,6 +2,6 @@
 *.css linguist-vendored
 *.scss linguist-vendored
 *.js linguist-vendored
-*.html linguist-vendored
-*.blade liguist-vendored
+*.html linguist-detectable=false
+*.blade liguist-detectable=false
 CHANGELOG.md export-ignore
