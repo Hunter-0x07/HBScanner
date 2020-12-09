@@ -9,32 +9,24 @@ import pymysql
 
 
 class WebPage(object):
+    """获取指定url页面并通过BeautifulSoup提取特征
+
+    特征包括: url, html content, headers, script, 
+    title, meta tags
     """
-    Simple representation of a web page, decoupled
-    from any particular HTTP library's API.
-    """
 
-    def __init__(self, url, verify=True):
+    def __init__(self, url: str, verify=True) -> None:
+        """初始化
+
+        :param: 目标url
+        :return: None
         """
-        Initialize a new WebPage object.
-
-        Parameters
-        ----------
-
-        url : str
-            The web page URL.
-        html : str
-            The web page content (HTML)
-        headers : dict
-            The HTTP response headers
-        """
-        response = requests.get(url, verify=verify, timeout=30)
+        response = requests.get(url, verify=verify, timeout=10)
         self.url = url
-        # if use response.text, could have some error
         self.html = response.content.decode('utf8')
         self.headers = response.headers
 
-        # Parse the HTML with BeautifulSoup to find <script> and <meta> tags.
+        # 通过BeautifulSoup解析html响应并提取tags
         self.parsed_html = soup = BeautifulSoup(self.html, "html.parser")
         self.scripts = [script['src'] for script in
                         soup.findAll('script', src=True)]
@@ -49,30 +41,17 @@ class WebPage(object):
         wappalyzer = Wappalyzer()
         self.apps = wappalyzer.analyze(self)
 
-    def info(self):
+    def info(self) -> dict:
+        """返回指纹匹配结果"""
         return list(self.apps)
-
-    # "apps": ';'.join(self.apps),
-    # "title": self.title,
 
 
 class Wappalyzer(object):
     """
-    Python Wappalyzer driver.
     """
 
     def __init__(self, apps_file=None):
-        """
-        Initialize a new Wappalyzer instance.
-
-        Parameters
-        ----------
-
-        categories : dict
-            Map of category ids to names, as in apps.json.
-        apps : dict
-            Map of app names to app dicts, as in apps.json.
-        """
+        """初始化"""
         if apps_file:
             with open(apps_file, 'r') as fd:
                 obj = json.load(fd)
@@ -87,11 +66,8 @@ class Wappalyzer(object):
             self._prepare_app(app)
 
     def _prepare_app(self, app):
-        """
-        Normalize app data, preparing it for the detection phase.
-        """
+        """"""
 
-        # Ensure these keys' values are lists
         for key in ['url', 'html', 'script', 'implies']:
             value = app.get(key)
             if value is None:
@@ -100,23 +76,19 @@ class Wappalyzer(object):
                 if not isinstance(value, list):
                     app[key] = [value]
 
-        # Ensure these keys exist
         for key in ['headers', 'meta']:
             value = app.get(key)
             if value is None:
                 app[key] = {}
 
-        # Ensure the 'meta' key is a dict
         obj = app['meta']
         if not isinstance(obj, dict):
             app['meta'] = {'generator': obj}
 
-        # Ensure keys are lowercase
         for key in ['headers', 'meta']:
             obj = app[key]
             app[key] = {k.lower(): v for k, v in obj.items()}
 
-        # Prepare regular expression patterns
         for key in ['url', 'html', 'script']:
             app[key] = [self._prepare_pattern(pattern) for pattern in app[key]]
 
@@ -127,8 +99,7 @@ class Wappalyzer(object):
 
     def _prepare_pattern(self, pattern):
         """
-        Strip out key:value pairs from the pattern and compile the regular
-        expression.
+        编译正则匹配模式
         """
         regex, _, rest = pattern.partition('\\;')
         try:
@@ -140,10 +111,8 @@ class Wappalyzer(object):
 
     def _has_app(self, app, webpage):
         """
-        Determine whether the web page matches the app signature.
+        匹配是否web page对象有指纹库相应特征
         """
-        # Search the easiest things first and save the full-text search of the
-        # HTML for last
 
         for regex in app['url']:
             if regex.search(webpage.url):
@@ -171,9 +140,7 @@ class Wappalyzer(object):
                 return True
 
     def _get_implied_apps(self, detected_apps):
-        """
-        Get the set of apps implied by `detected_apps`.
-        """
+        """"""
 
         def __get_implied_apps(apps):
             _implied_apps = set()
@@ -185,7 +152,6 @@ class Wappalyzer(object):
         implied_apps = __get_implied_apps(detected_apps)
         all_implied_apps = set()
 
-        # Descend recursively until we've found all implied apps
         while not all_implied_apps.issuperset(implied_apps):
             all_implied_apps.update(implied_apps)
             implied_apps = __get_implied_apps(all_implied_apps)
@@ -194,7 +160,7 @@ class Wappalyzer(object):
 
     def get_categories(self, app_name):
         """
-        Returns a list of the categories for an app name.
+        以列表形式返回指纹所属类别
         """
         cat_nums = self.apps.get(app_name, {}).get("cats", [])
         cat_names = [self.categories.get("%s" % cat_num, "")
@@ -204,7 +170,7 @@ class Wappalyzer(object):
 
     def analyze(self, webpage):
         """
-        Return a list of applications that can be detected on the web page.
+        以列表形式返回web page对象中匹配好的指纹
         """
         detected_apps = set()
 
@@ -216,20 +182,10 @@ class Wappalyzer(object):
 
         return detected_apps
 
-    def analyze_with_categories(self, webpage):
-        detected_apps = self.analyze(webpage)
-        categorised_apps = {}
-
-        for app_name in detected_apps:
-            cat_names = self.get_categories(app_name)
-            categorised_apps[app_name] = {"categories": cat_names}
-
-        return categorised_apps
-
 
 def save_finger_result(target_id):
     """
-    基于Wappalyzer进行指纹识别
+    保存指纹数据
     """
     # 数据库基本信息
     host = "localhost"
@@ -242,10 +198,13 @@ def save_finger_result(target_id):
     cursor = db.cursor()
 
     # 根据id查询数据库信息
-    sql_find = "select * from finger_scan_tasks where id = {}".format(target_id)
+    sql_find = "select * from finger_scan_tasks where id = {}".format(
+        target_id)
     cursor.execute(sql_find)
     result = cursor.fetchone()
     target = result[2]
+    if not target.startswith('http://') and not target.startswith("https://"):
+        target = "http://" + target
     task_name = result[1]
 
     # 更新子域名枚举任务表状态为running
@@ -302,7 +261,10 @@ def save_finger_result(target_id):
     # 关闭数据库连接
     db.close()
 
+
 if __name__ == "__main__":
-    target = "http://test.com"
-    wp_obj = WebPage(target)
-    finger_results = wp_obj.info()
+    # target = "http://test.com"
+    # wp_obj = WebPage(target)
+    # finger_results = wp_obj.info()
+    # dict = json.loads('./apps.json')
+    pass

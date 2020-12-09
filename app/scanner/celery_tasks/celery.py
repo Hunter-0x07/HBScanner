@@ -3,7 +3,7 @@
 
 from celery import Celery
 
-BROKER_URL = 'amqp://username:password@localhost:5672/rabbitmq'
+BROKER_URL = 'amqp://secwalker:deng12345@localhost:5672/rabbitmq'
 
 HBScanner_cel = Celery('HBScanner_celery',
                        broker=BROKER_URL,
